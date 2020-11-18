@@ -35,11 +35,11 @@ public:
   string name() const { return Name; } ;
   string date() const { return Date; } ;
   string junle() const { return Genre; };
-  int num() const{return Num};
+  int num() const{return Num;};
   vector<string>position()const{return Position;};
-  bool valid() const { return !Positon.empty(); };
+  bool valid() const { return !Position.empty(); };
   std::istream& read(std::istream&);
-  
+
 
 private:
   string ID;//商品番号（バーコード）
@@ -47,5 +47,10 @@ private:
   string Date;//廃棄日程
   string Genre;//ジャンル
   int Num;//在庫数
-  vector<string> Positon;//演習のvector
+  vector<string> Position;//演習のvector
 };
+
+int main(){
+
+  return 0;
+}
