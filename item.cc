@@ -34,7 +34,7 @@ public:
   string id() const { return ID; } ;
   string name() const { return Name; } ;
   string date() const { return Date; } ;
-  string junle() const { return Genre; };
+  string price() const { return Price; };
   int num() const{return Num;};
   vector<string>position()const{return Position;};
   bool valid() const { return !Position.empty(); };
@@ -45,12 +45,17 @@ private:
   string ID;//商品番号（バーコード）
   string Name;//商品名
   string Date;//廃棄日程
-  string Genre;//ジャンル
+  string Price;//価格
   int Num;//在庫数
-  vector<string> Position;//演習のvector
+  vector<string> Position;//商品の売り場の位置のvector
 };
 
-int main(){
+int main(int argc, char* argv[]){
 
+  if(argc!=3){
+    std::cerr<<"Error"<<endl;
+    return -1;
+  }
+  
   return 0;
 }
