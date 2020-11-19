@@ -45,8 +45,22 @@ private:
 Item_info::Item_info(){}
 Item_info::Item_info( istream& is) { read(is); }
 
+istream& read_position(istream& is, vector<string>v){
+  if( is ) {
+  string x; // 毎回の商品の売り場の位置
+  v.clear();
+  while( is >> x ){
+  v.push_back( x );
+    }
+  is.clear();
+}
+return is;
+}
 
 istream& Item_info::read(istream& is ){
+  is >> Id >> Name >> Date >> Price >> Num;
+
+  read_position(is, Position);
 
   return is;
 }
