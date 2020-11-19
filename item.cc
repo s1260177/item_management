@@ -12,7 +12,6 @@ Date:2020-11
 #include<iomanip>// 書式設定を利用するときに必要
 #include<map>//map
 #include<list>
-
 #include<fstream>//infile outfile
 
 using namespace std;
@@ -23,7 +22,7 @@ public:
   // インターフェース
   Item_info();
   Item_info( istream& );
-  string id() const { return ID; } ;
+  string id() const { return Id; } ;
   string name() const { return Name; } ;
   string date() const { return Date; } ;
   string price() const { return Price; };
@@ -34,7 +33,7 @@ public:
 
 
 private:
-  string ID;//商品番号（バーコード）
+  string Id;//商品番号（バーコード）
   string Name;//商品名
   string Date;//廃棄日程
   string Price;//価格
@@ -43,6 +42,7 @@ private:
 };
 
 // メンバ関数の定義
+Item_info::Item_info(){}
 Item_info::Item_info( istream& is) { read(is); }
 
 
@@ -61,14 +61,13 @@ int main(int argc, char* argv[]){
   }
 
   //入力
-  /*
   vector<Item_info> items;
   Item_info record;
 
-  while(record.read(infile)){//cause of error
+  while(record.read(infile)){
     items.push_back(record);
   }
-*/
+
   //入力完了表示
   cout<<"データ入力完了"<<endl;
   //売り場注意情報表示
