@@ -109,6 +109,6 @@ int main(int argc, char* argv[]){
   //outfile<<;
 
   cout<<"完了しました。終了します"<<endl;
-
+  
   return 0;
 }
