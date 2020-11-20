@@ -69,6 +69,12 @@ istream& Item_info::read(istream& is ){
   return is;
 }
 
+istream& Item_info::output(Item_info v){
+  outfile<<Id<<Name<<Date<<Price<<Num<<Position;
+
+  return v;
+}
+
 int main(int argc, char* argv[]){
   //ファイル操作
   std::ifstream infile(argv[1]);
@@ -141,6 +147,10 @@ int main(int argc, char* argv[]){
 
   //終了動作
   cout<<"ファイル更新中"<<endl;
+  for(vector<Item_info>size_type:: i=0;i!=items.size();i++){
+    record=items[i];
+    record.output(record);
+  }
   //outfile<<;
 
   cout<<"完了しました。終了します"<<endl;
