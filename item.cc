@@ -27,7 +27,8 @@ public:
   string date() const { return Date; } ;
   string price() const { return Price; };
   int num() const{return Num;};
-  vector<string>position()const{return Position;};
+//  vector<string>position()const{return Position;};
+  string position() const {return Position;};
   bool valid() const { return !Position.empty();};
   istream& read(istream&);
 
@@ -38,13 +39,15 @@ private:
   string Date;//廃棄日程
   string Price;//価格
   int Num;//在庫数
-  vector<string> Position;//商品の売り場の位置のvector
+  //vector<string> Position;//商品の売り場の位置のvector
+  string Position;//商品の売り場の位置
 };
 
 // メンバ関数の定義
 Item_info::Item_info(){}
 Item_info::Item_info( istream& is) { read(is); }
 
+/*
 istream& read_position(istream& is, vector<string>v){
   if( is ) {
   string x; // 毎回の商品の売り場の位置
@@ -56,11 +59,12 @@ istream& read_position(istream& is, vector<string>v){
 }
 return is;
 }
+*/
 
 istream& Item_info::read(istream& is ){
-  is >> Id >> Name >> Date >> Price >> Num;
+  is >> Id >> Name >> Date >> Price >> Num >>Position;
 
-  read_position(is, Position);
+  //read_position(is, Position);
 
   return is;
 }
@@ -93,8 +97,39 @@ int main(int argc, char* argv[]){
   while(menu_select!=4){
     cout<<"1.商品情報の追加"<<endl<<"2.商品検索"<<endl<<"3.売り場検索"<<endl<<"4.終了（データ更新)"<<endl;
     cin>>menu_select;
-    if(menu_select==1){
+    if(menu_select==1){//1.商品情報の追加
+      string judge;
 
+      cout<<"登録したい商品情報を入力してください"<<endl;
+      cout<<"ex) 00000000 item 2020/12/31 1000 10 A1" <<endl;
+      while(judge!="OK"){
+        record.read(cin);
+        cout<<"入力内容"<<endl;//日本語にsetwは効かない。。。
+        cout<<"商品番号　　　"<<record.id()<<endl<<"商品名　　　　"<<record.name()<<endl;
+        cout<<"廃棄日　　　　"<<record.date()<<endl;
+        cout<<"価格　　　　　"<<record.price() <<endl<<"在庫数　　　　"<<record.num()<<endl;
+
+        cout<<"売り場の位置　"<<record.position()<<endl;
+
+
+          while(judge!="OK"){
+            cout<<"この内容を登録してもよろしいでしょうか？ OK or NO"<<endl;
+            cin>>judge;
+            if(judge=="OK"){
+              items.push_back(record);
+              cout<<"登録しました"<<endl;
+              break;
+            }
+            else if(judge=="NO"){
+              cout<<"もう一度入力し直してください"<<endl;
+              break;
+            }
+            else{
+              cout<<"OK or NOで答えてください ";
+            }
+          //}
+        }
+      }
     }else if(menu_select==2){
 
     }else if (menu_select==3){
@@ -109,6 +144,6 @@ int main(int argc, char* argv[]){
   //outfile<<;
 
   cout<<"完了しました。終了します"<<endl;
-  
+
   return 0;
 }
